@@ -17,16 +17,17 @@ interface NavItemProps {
     to: To
 }
 
-const NavLink = styled(Link)({
+const NavLink = styled(Link)(({theme: { palette }}) => ({
     display: 'block',
-    color: '#FFF',
+    backgroundColor: palette.background.default,
+    color: palette.text.primary,
     height: '100%',
     padding: '.5rem',
     '&:hover': {
         cursor: 'pointer',
-        color: '#BBB',
+        color: palette.text.secondary,
     }
-});
+}));
 
 const NavItem = ({icon: Icon, to}: NavItemProps) => {
     return (
@@ -52,7 +53,10 @@ export const MobileNavbar: React.FC = () => {
                 width: '100%',
                 position: 'fixed',
                 bottom: 0,
-                left: 0
+                left: 0,
+                display: {
+                    sm: 'none'
+                }
             }}
         >
             <NavItem icon={HouseIcon} to=""/>
