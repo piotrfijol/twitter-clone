@@ -1,17 +1,12 @@
 import { Box, List, ListItem, ListItemIcon, 
         ListItemText, ListItemButton, ListItemAvatar,
-        Avatar, Typography, Button, styled } from '@mui/material'
+        Avatar, Typography, Button } from '@mui/material'
 import { House, Tag, Notifications, Mail, 
         Article, Bookmark, Person2, 
         MoreHoriz, Twitter} from '@mui/icons-material'
-import { Link } from 'react-router-dom'
 import { MouseEvent, useState } from 'react'
 import { MoreMenu } from './MoreMenu'
-
-const StyledNavLink = styled(Link)(({theme}) => ({
-  textDecoration: "none",
-  color: theme.palette.text.primary
-}));
+import { StyledNavLink } from './StyledNavLink'
 
 export const Sidebar = () => {
   const [moreMenuAnchor, setMoreMenuAnchor] = useState<HTMLElement | null>(null);
@@ -86,53 +81,61 @@ export const Sidebar = () => {
             </ListItemButton>
           </ListItem>
         </StyledNavLink>
+        <StyledNavLink to="">
           <ListItem>
             <ListItemButton>
               <ListItemIcon><Tag /> </ListItemIcon>
               <ListItemText>Explore</ListItemText>
             </ListItemButton>
           </ListItem>
+        </StyledNavLink>
+        <StyledNavLink to="">
           <ListItem>
             <ListItemButton>
               <ListItemIcon><Notifications /> </ListItemIcon>
               <ListItemText>Notifications</ListItemText>
             </ListItemButton>
           </ListItem>
+        </StyledNavLink>
+        <StyledNavLink to="">
           <ListItem>
             <ListItemButton>
               <ListItemIcon><Mail /> </ListItemIcon>
               <ListItemText>Messages</ListItemText>
             </ListItemButton>
           </ListItem>
+        </StyledNavLink>
+        <StyledNavLink to="">
           <ListItem>
             <ListItemButton>
               <ListItemIcon><Article /> </ListItemIcon>
               <ListItemText>Lists</ListItemText>
             </ListItemButton>
           </ListItem>
+        </StyledNavLink>
+        <StyledNavLink to="">
           <ListItem>
             <ListItemButton>
               <ListItemIcon><Bookmark /> </ListItemIcon>
               <ListItemText>Bookmarks</ListItemText>
             </ListItemButton>
           </ListItem>
+        </StyledNavLink>
+        <StyledNavLink to="">
           <ListItem>
             <ListItemButton>
               <ListItemIcon><Person2 /> </ListItemIcon>
               <ListItemText>Profile</ListItemText>
             </ListItemButton>
           </ListItem>
+        </StyledNavLink>
           <MoreMenu 
             open={isMoreMenuOpen} 
             anchorEl={moreMenuAnchor} 
             onClose={handleClose}
             anchorOrigin={{
-              vertical: 'top',
-              horizontal: 'left',
-            }}
-            transformOrigin={{
               vertical: 'bottom',
-              horizontal: 'left',
+              horizontal: 'center',
             }}
           />
           <ListItem onClick={toggleMoreMenu}>
