@@ -1,24 +1,35 @@
 import { Box, List, ListItem, ListItemIcon, 
-        ListItemText, ListItemButton, ListItemAvatar,
-        Avatar, Typography, Button } from '@mui/material'
+        ListItemText, ListItemButton, Button } from '@mui/material'
 import { House, Tag, Notifications, Mail, 
         Article, Bookmark, Person2, 
         MoreHoriz, Twitter} from '@mui/icons-material'
 import { MouseEvent, useState } from 'react'
 import { MoreMenu } from './MoreMenu'
 import { StyledNavLink } from './StyledNavLink'
+import { ProfileMenu } from './ProfileMenu'
+import { UserProfile } from '../UserProfile'
 
 export const Sidebar = () => {
   const [moreMenuAnchor, setMoreMenuAnchor] = useState<HTMLElement | null>(null);
+  const [profileMenuAnchor, setProfileMenuAnchor] = useState<HTMLElement | null>(null);
   const isMoreMenuOpen = Boolean(moreMenuAnchor);
+  const isProfileMenuOpen = Boolean(profileMenuAnchor);
 
-  const toggleMoreMenu = (ev: MouseEvent<HTMLElement>) => {
+  const openMoreMenu = (ev: MouseEvent<HTMLElement>) => {
     setMoreMenuAnchor(ev.currentTarget)
-  }
+  };
 
-  const handleClose = () => {
+  const closeMoreMenu = () => {
     setMoreMenuAnchor(null);
-  }
+  };
+
+  const openProfileMenu = (ev: MouseEvent<HTMLElement>) => {
+    setProfileMenuAnchor(ev.currentTarget);
+  };
+
+  const closeProfileMenu = () => {
+    setProfileMenuAnchor(null);
+  };
 
   return (
     <Box
@@ -132,13 +143,13 @@ export const Sidebar = () => {
           <MoreMenu 
             open={isMoreMenuOpen} 
             anchorEl={moreMenuAnchor} 
-            onClose={handleClose}
+            onClose={closeMoreMenu}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
             }}
           />
-          <ListItem onClick={toggleMoreMenu}>
+          <ListItem onClick={openMoreMenu}>
             <ListItemButton >
               <ListItemIcon><MoreHoriz /> </ListItemIcon>
               <ListItemText>More</ListItemText>
@@ -162,14 +173,20 @@ export const Sidebar = () => {
               </ListItemText>
             </Button>
           </ListItem>
-          <ListItem sx={{
-            display: 'flex',
-            marginTop: 'auto'
-          }}>
+          
+          <ProfileMenu 
+            open={isProfileMenuOpen} 
+            anchorEl={profileMenuAnchor} 
+            onClose={closeProfileMenu}
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'center',
+            }}
+          />
+          <ListItem 
+            onClick={openProfileMenu}
+          >
             <ListItemButton>
-              <ListItemAvatar>
-                <Avatar src="" />
-              </ListItemAvatar>
               <Box
                 sx={{
                   display: {
@@ -179,17 +196,7 @@ export const Sidebar = () => {
                   alignItems: 'center'
                 }}              
               >
-                <ListItemText>
-                  <Typography
-                    sx={{
-                      fontWeight: 800
-                    }}
-                  >Full Name</Typography>
-                  <Typography
-                    sx={{
-                      fontWeight: 300
-                  }}>@nickname123</Typography>
-                </ListItemText>
+                <UserProfile />
                 <ListItemIcon><MoreHoriz /></ListItemIcon>
               </Box>
             </ListItemButton>
