@@ -1,4 +1,6 @@
-import { Avatar, Box, BoxProps, Typography } from "@mui/material"
+import { Avatar, Box, BoxProps } from "@mui/material"
+import { UserDisplayName } from "./UserDisplayName"
+import { UserName } from "./UserName"
 
 interface UserProfileProps extends BoxProps{
     direction?: "row" | "column" | "row-reverse" | "column-reverse"
@@ -19,16 +21,9 @@ export const UserProfile = ({direction = "row", sx, ...restProps} : UserProfileP
             {...restProps}
         >
             <Avatar src="" />
-            <Box>
-                <Typography
-                sx={{
-                    fontWeight: 800
-                }}
-                >Full Name</Typography>
-                <Typography
-                sx={{
-                    fontWeight: 300
-                }}>@nickname123</Typography>
+            <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                <UserDisplayName text={'Nick Name'} />
+                <UserName text={'nickname123'} />
             </Box>
         </Box>
     </>
